@@ -35,7 +35,7 @@ def process_file(textFileName: str):
     while("Box" not in line):
         line = infile.readline()
     
-    boxId = line.replace(": ", "_")       
+    boxId = line.strip().replace(": ", "_")       
 
     while ("Start Time" not in line):
         line = infile.readline()
