@@ -24,25 +24,29 @@ def process_file(textFileName: str):
     """
     # Open the file for reading
     infile = open(textFileName, "r")
+    csvFileName = textFileName.strip().split(".")[0] + ".csv"
+    line = ""
 
-    for i in range(4):
-        infile.readline()
+    while ("Start Date" not in line):
+        line = infile.readline()
 
-    dateLine = infile.readline()
-    date = dateLine.strip().split(":")[1]
-    date = date.replace("/", "_")
+    date = line.split(":")[1].strip().replace("/", "_")
 
-    for i in range(4):
-        infile.readline()
+    while("Box" not in line):
+        line = infile.readline()
+    
+    boxId = line.replace(": ", "_")       
 
-    boxLine = infile.readline()
-    box = boxLine.strip().replace(": ", "")
+    while ("Start Time" not in line):
+        line = infile.readline()
 
-    csvFileName = date + "_" + box + ".csv"
+    startTime = line.strip().split(": ")[1].split(":")
+    startTime = startTime[0] + "h" + startTime[1] + "m"
+    
+    while(line.strip() != "C:"):
+        line = infile.readline()
 
-    # Discard header used (used for test file you sent me)
-    for i in range(30):
-        infile.readline()
+    csvFileName = "_".join([date, boxId, startTime]) + ".csv"
 
     defTime = 0
     eventLog = {}
