@@ -1,4 +1,4 @@
-# txt_to_csv_script
+# MedPC_txt_to_csv
 By. Jonathan Walsh and Josiah Walsh
 
 ## Overview
