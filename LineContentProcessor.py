@@ -47,8 +47,9 @@ def process_file(textFileName: str):
     defTime = 0
     eventLog = {}
     eventLog[defTime] = []
+    eId = "100"
     # Process the rest of the file
-    for i in range(121):
+    while (eId != "300"):
         line = infile.readline()
         lineContent = process_line_content(line)
         for event in lineContent:
